@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="guest">
+	
+	<!-- 조회수 증가 -->
+	<update id="guest_hit" parameterType="int">
+	 	update guest33 set 
+	 		guest_hit=guest_hit+1 
+	 	where guest_no=#{no}
+	</update>
+	
+</mapper>

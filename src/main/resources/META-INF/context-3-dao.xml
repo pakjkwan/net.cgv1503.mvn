@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+    <!-- Annotation지원 : autowired사용목적 -->
+    <context:annotation-config/>
+    
+    <bean id="boardDAO" class="net.cho.web.dao.BoardDAO" autowire="byName"/> 
+   <bean id="memberDao" class="net.cho.web.dao.MemberDao" autowire="byName"/>
+   <bean id="itemDao" class="net.cho.web.dao.ItemDao" autowire="byName"/>
+   
+   <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="factoryBean" />
+	</bean>
+</beans>

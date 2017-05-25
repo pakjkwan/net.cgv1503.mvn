@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="item">
+	
+	<insert id="itemInsert" parameterType="net.cho.web.model.ItemVo">
+		insert into item(
+			item_no,
+			item_name,
+			cate_name,
+			img_name
+		) 
+		values(seq.nextVal,#{item_name,jdbcType=VARCHAR},#{cate_name,jdbcType=VARCHAR},#{img_name,jdbcType=VARCHAR})
+					
+	</insert>
+	
+	<select id="itemList" resultType="net.cho.web.model.ItemVo" parameterType="net.cho.web.model.ItemVo">
+		select * from item 
+	</select>
+	
+	<select id="getitemList" resultType="net.cho.web.model.ItemVo">
+		select * from item order by #{item_no} desc
+	</select>
+	
+	<select id="itemImgList" resultType="net.cho.web.model.ItemVo">
+		select * 
+		from (select * from item where cate_name = 'drama') 
+		order by item_no 
+	</select>	
+	
+	<select id="getitemCount" resultType="net.cho.web.model.ItemVo">
+		select count(*) as count from item 
+	</select>
+	
+	<select id="itemDetail" resultType="net.cho.web.model.ItemVo" parameterType="int">
+		select * from item where item_no = #{item_no}
+	</select>
+	
+	<delete id="itemDelete" parameterType="net.cho.web.model.ItemVo">
+		delete from member  where  email = #{email}
+	</delete>
+	
+	<update id="itemEdit" parameterType="net.cho.web.model.ItemVo">
+		update item set passwd=#{passwd}, mobile=#{mobile}
+		where email=#{email} 
+	</update>
+	<select id="itemSearch" parameterType="java.util.HashMap" resultType="net.cho.web.model.ItemVo">
+		select * 
+		from item
+		where item_name like '%${keyword}%'
+		
+	</select>
+	
+
+</mapper>
